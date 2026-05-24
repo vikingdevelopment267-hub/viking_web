@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  ChevronDown,
-  ChevronUp,
-  MessageCircle,
-} from "lucide-react";
-
+import { ChevronDown, ChevronUp, MessageCircle } from "lucide-react";
 import "./index.css";
 
 function Accordion({ title, content }) {
@@ -12,49 +7,40 @@ function Accordion({ title, content }) {
 
   return (
     <div className="accordion">
-      <div
-        className="accordion-header"
-        onClick={() => setOpen(!open)}
-      >
+      <div className="accordion-header" onClick={() => setOpen(!open)}>
         <h3>{title}</h3>
-
         {open ? <ChevronUp /> : <ChevronDown />}
       </div>
 
-      {open && (
-        <div className="accordion-content">
-          <p>{content}</p>
+      <div className={`accordion-content ${open ? "open" : ""}`}>
+        <p>{content}</p>
 
-          <div className="contact-buttons">
+        <div className="contact-buttons">
+          <a
+            href="https://wa.me/5492616136651"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <MessageCircle size={18} />
+            WhatsApp
+          </a>
 
-            <a
-              href="https://wa.me/5492616136651"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MessageCircle size={18} />
-              WhatsApp
-            </a>
-
-            <a
-              href="https://instagram.com/viking_web"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Instagram
-            </a>
-
-          </div>
+          <a
+            href="https://instagram.com/viking_web"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram
+          </a>
         </div>
-      )}
+      </div>
     </div>
   );
 }
 
 export default function App() {
-
   const fullText =
-    "Creamos páginas web modernas, branding digital, automatizaciones inteligentes y experiencias visuales épicas para negocios y marcas.";
+    "Creamos páginas web modernas, branding digital, automatizaciones inteligentes y sistemas que convierten visitantes en clientes.";
 
   const [text, setText] = useState("");
 
@@ -65,9 +51,7 @@ export default function App() {
       setText(fullText.slice(0, i));
       i++;
 
-      if (i > fullText.length) {
-        clearInterval(interval);
-      }
+      if (i > fullText.length) clearInterval(interval);
     }, 25);
 
     return () => clearInterval(interval);
@@ -79,62 +63,53 @@ export default function App() {
       {/* HERO */}
       <section className="hero">
 
-        <img
-          src="/logo.png"
-          alt="Viking Logo"
-          className="hero-logo"
-        />
+        <img src="/logo.png" alt="Viking Logo" className="hero-logo" />
 
-        <h2 className="welcome">
-          BIENVENIDO
-        </h2>
+        <h2 className="welcome">BIENVENIDO</h2>
 
         <h1 className="main-title">
           VIKING
-          <span>DE DESARROLLO WEB</span>
+          <span>DESARROLLO WEB</span>
         </h1>
 
-        {/* TYPEWRITER */}
         <p className="description">
           {text}
           <span className="cursor">|</span>
         </p>
 
+        <a href="#services" className="cta-hero">
+          Ver Servicios
+        </a>
       </section>
 
       {/* SERVICIOS */}
-      <section className="services">
-
+      <section id="services" className="services">
         <h2>Servicios</h2>
 
         <Accordion
           title="Creación de páginas Web"
-          content="Diseñamos páginas web modernas, rápidas, responsivas y optimizadas para negocios, emprendimientos y marcas personales."
+          content="Diseñamos páginas modernas, rápidas y optimizadas para vender."
         />
 
         <Accordion
-          title="Marketing Digital, Publicidad y Creación de marca"
-          content="Creamos branding profesional, campañas publicitarias y estrategias digitales para potenciar tu negocio."
+          title="Marketing Digital & Branding"
+          content="Creamos identidad de marca + campañas publicitarias que convierten."
         />
 
         <Accordion
-          title="Automatización"
-          content="Automatizamos tareas, procesos y sistemas para ahorrar tiempo y mejorar la productividad."
+          title="Automatización de Negocios"
+          content="Sistemas automáticos para ahorrar tiempo y aumentar ventas."
         />
-
       </section>
 
       {/* CURSO */}
       <section className="course">
-
         <h2>Curso de Desarrollo Web</h2>
 
         <div className="course-card">
-
           <p>
-            Aprende Desarrollo Web Full Stack desde cero
-            con proyectos reales, diseño moderno y
-            tecnologías actuales.
+            Aprendé Desarrollo Web Full Stack desde cero con proyectos reales y
+            mentalidad de negocio.
           </p>
 
           <a
@@ -143,48 +118,28 @@ export default function App() {
             rel="noreferrer"
             className="course-button"
           >
-            Ver Curso
+            Acceder al Curso
           </a>
-
         </div>
-
       </section>
 
       {/* FOOTER */}
       <footer className="footer">
-
         <h3>VIKING</h3>
-
-        <p>
-          Desarrollo Web • Branding • Automatización
-        </p>
+        <p>Desarrollo Web • Branding • Automatización</p>
 
         <div className="footer-social">
-
-          <a
-            href="https://instagram.com/viking_web"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://instagram.com/viking_web" target="_blank" rel="noreferrer">
             Instagram
           </a>
 
-          <a
-            href="https://wa.me/5492616136651"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <MessageCircle />
+          <a href="https://wa.me/5492616136651" target="_blank" rel="noreferrer">
+            WhatsApp
           </a>
-
         </div>
 
-        <span>
-          © 2026 Viking del Desarrollo Web
-        </span>
-
+        <span>© 2026 Viking Desarrollo Web</span>
       </footer>
-
     </div>
   );
 }
